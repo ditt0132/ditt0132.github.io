@@ -25,4 +25,3 @@ function getKor(kor) {
         t: t[tn]
     };
 }
-console.log(getKor("안녕"))
