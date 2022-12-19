@@ -1,0 +1,67 @@
+<html><head><meta charset="utf-8"><title>전력 포즈로 원 투 쓰리!</title></head>
+<body>
+<style>
+	#btn {
+    padding: 5px 23px;
+    background-color: skyblue;
+    border: none;
+    color: #ffde05;
+    text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
+}
+</style>
+<img id="1" src="https://w.namu.la/s/28561aeba5f5883f34c4b955f3a647075ba7654055029263c428f6263514efd0f631572e5a52b6ad96b99a1af63b7ac67cea18b83c86adcdd7cf011227db20f69b5f3233a07473f908fbbbb4d0373538e1ec0eb36c576a43a29ad26e9a0f8cdc" ></img>
+<img id="2" src="https://w.namu.la/s/28561aeba5f5883f34c4b955f3a647075ba7654055029263c428f6263514efd0f631572e5a52b6ad96b99a1af63b7ac67cea18b83c86adcdd7cf011227db20f69b5f3233a07473f908fbbbb4d0373538e1ec0eb36c576a43a29ad26e9a0f8cdc" ></img>
+<img id="3" src="https://w.namu.la/s/28561aeba5f5883f34c4b955f3a647075ba7654055029263c428f6263514efd0f631572e5a52b6ad96b99a1af63b7ac67cea18b83c86adcdd7cf011227db20f69b5f3233a07473f908fbbbb4d0373538e1ec0eb36c576a43a29ad26e9a0f8cdc" ></img>
+<p>물Z 슈퍼아쿠아토네이도</p>
+<p>풀Z 블룸샤인엑스트라</p>
+<p>불Z 다이내믹풀플레임</p>
+<button id="btn" onclick="roll()">전력 포즈로 원 투 쓰리!</button>
+<script>
+var normal = "https://w.namu.la/s/28561aeba5f5883f34c4b955f3a647075ba7654055029263c428f6263514efd0f631572e5a52b6ad96b99a1af63b7ac67cea18b83c86adcdd7cf011227db20f69b5f3233a07473f908fbbbb4d0373538e1ec0eb36c576a43a29ad26e9a0f8cdc"
+var green = "https://w.namu.la/s/5b28a8bd615dbe3b8f30cae8721155910e22c78919b0caff6b932bae3f49bc0b7eb5f4fa0dc3bcf0d280a6e846fd2e403128feaa023d94721b62966feb99d12a36c9ac58a266828665cfe22fd0a7307ccd2669fb3283c5701f28a0fa149d9cf8"
+var blue = "https://w.namu.la/s/a71185d9baf8b663f1d9ecf206d6b8b369ef1d5b708a654abd811e784b7931dd532163be23b6d3b24e5adbd1bdee2738e0f45c5f5897dff6b7630ede428ee965fdcfda2c302feb8285c4fb39a0e7a08386f591782174d8e403945a705e4304fc"
+var red = "https://w.namu.la/s/b63a4b358f052ee77b8794ec95941dced5540bd9ba48da7f63693cd3cca1d8eff5b29498b94d855b604a94e71e84e7eb1d1cdd8f0a8f7dbc665f282ef420e8b0d20337030e89071ed225c45975aeb51491a43ec546b8aaad10fc87b0f6d62094"
+var orb = "https://assets.mcasset.cloud/1.19.3/assets/minecraft/sounds/random/orb.ogg"
+var fire = "https://assets.mcasset.cloud/1.19.3/assets/minecraft/sounds/block/campfire/crackle1.ogg"
+var water = "https://assets.mcasset.cloud/1.19.3/assets/minecraft/sounds/liquid/swim1.ogg"
+var grass = "https://assets.mcasset.cloud/1.19.3/assets/minecraft/sounds/block/azalea_leaves/step4.ogg"
+
+var arr = [[green, grass], [blue, water], [red, fire]]
+
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i -= 1) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
+}
+
+
+function wait(sec) {
+    let start = Date.now(), now = start;
+    while (now - start < sec * 1000) {
+        now = Date.now();
+    }
+}
+
+
+
+function roll() {
+var l = [rd(), rd(), rd()]
+    new Audio(orb).play()
+document.getElementById("1").src = l[0][0]
+document.getElementById("2").src = l[1][0]
+document.getElementById("3").src = l[2][0]
+}
+
+function rd(){
+return arr[Math.floor(Math.random() * arr.length)]
+}
+
+
+</script>
+</body>
+</html>
