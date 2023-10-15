@@ -5,7 +5,20 @@
   <body>
     <input id="inp" type="text">
     <p>DO NOT PUT "/" AT END</p>
+    <button onclick="run()"></button>
     <br>
-    
+    <p>here you go: <a href="#" id="out"></a></p>
+    <script>
+      function run(){
+        var original = document.getElementById("inp").value
+        var parsed = original.replace("http://","").replace("https://","").replace("bstlar.com/").replace("/","%2F")
+
+        fetch("https://bstlar.com/api/link?url="+parsed).then(r=>r.json())
+        .then(r=>{
+          document.getElementById("out").href = r.link.destination_url
+          document.getElementById("out").value = parsed.split("%2F")[1] // aa1%2F[linkname]
+        })
+      }
+    </script>
   </body>
 </html>
