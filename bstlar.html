@@ -11,10 +11,13 @@
     <script>
       function run(){
         var original = document.getElementById("inp").value
+        console.log("in run() check var")
         var parsed = original.replace("http://","").replace("https://","").replace("bstlar.com/").replace("/","%2F")
-
-        fetch("https://bstlar.com/api/link?url="+parsed).then(r=>r.json())
+        console.log("in run() var report.₩noriginal:" + original + "₩nparsed: "+parsed)
+        
+        fetch("https://bstlar.com/api/link?url="+parsed).then(r=>{r.json(); console.log("in first fetch")})
         .then(r=>{
+          console.log("in second fetch")
           document.getElementById("out").href = r.link.destination_url
           document.getElementById("out").value = parsed.split("%2F")[1] // aa1%2F[linkname]
         })
