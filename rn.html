@@ -50,7 +50,7 @@
                 request.open('GET', `https://api.mojang.com/users/profiles/minecraft/${nickname}`, false);
                 request.send();
 
-                if (request.status === 200) {
+                if (request.response.id) {
                     const checkEmoji = document.createTextNode(" ✔️");
                     nicknameElement.appendChild(checkEmoji);
                 } else {
