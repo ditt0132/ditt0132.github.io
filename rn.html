@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Nickname Generator with Check</title>
+</head>
+<body>
+    <h1>Random Nickname Generator with Check</h1>
+    <label>
+        <input type="checkbox" id="useNumbers"> Include Numbers (0-9)
+    </label>
+    <br>
+    <label>
+        <input type="checkbox" id="useUnderscore"> Include Underscore (_)
+    </label>
+    <br>
+    <button onclick="generateAndCheck()">Generate and Check Nicknames</button>
+    <div id="nicknameList"></div>
+
+    <script>
+        function generateAndCheck() {
+            const alphabet = "abcdefghijklmnopqrstuvwxyz";
+            const numbers = "0123456789";
+            const underscore = "_";
+            let validChars = alphabet;
+
+            if (document.getElementById("useNumbers").checked) {
+                validChars += numbers;
+            }
+            if (document.getElementById("useUnderscore").checked) {
+                validChars += underscore;
+            }
+
+            document.getElementById("nicknameList").innerHTML = "";
+
+            for (let i = 0; i < 10; i++) {
+                let nickname = "";
+
+                for (let j = 0; j < 4; j++) {
+                    const randomIndex = Math.floor(Math.random() * validChars.length);
+                    const randomChar = validChars[randomIndex];
+                    nickname += randomChar;
+                }
+
+                const nicknameElement = document.createElement("div");
+                nicknameElement.textContent = nickname;
+
+                const request = new XMLHttpRequest();
+                request.open('GET', `https://api.mojang.com/users/profiles/minecraft/${nickname}`, false);
+                request.send();
+
+                if (request.status === 200) {
+                    const checkEmoji = document.createTextNode(" ✔️");
+                    nicknameElement.appendChild(checkEmoji);
+                } else {
+                    const xEmoji = document.createTextNode(" ❌");
+                    nicknameElement.appendChild(xEmoji);
+                }
+
+                document.getElementById("nicknameList").appendChild(nicknameElement);
+            }
+        }
+    </script>
+</body>
+</html>
