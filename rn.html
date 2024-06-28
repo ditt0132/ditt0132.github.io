@@ -59,7 +59,7 @@
                         nicknameElement.textContent += " ❌"+response.json();
                     }
                 } catch (error) {
-                    nicknameElement.textContent += " ❌"+"Err";
+                    nicknameElement.textContent += " ❌"+error;
                 }
 
                 document.getElementById("nicknameList").appendChild(nicknameElement);
