@@ -56,10 +56,10 @@
                             nicknameElement.textContent += " ❌"+data;
                         }
                     } else {
-                        nicknameElement.textContent += " ❌";
+                        nicknameElement.textContent += " ❌"+response.json();
                     }
                 } catch (error) {
-                    nicknameElement.textContent += " ❌";
+                    nicknameElement.textContent += " ❌"+"Err";
                 }
 
                 document.getElementById("nicknameList").appendChild(nicknameElement);
