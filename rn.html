@@ -43,8 +43,9 @@
                     nickname += randomChar;
                 }
 
-                const nicknameElement = document.createElement("div");
+                const nicknameElement = document.createElement("p");
                 nicknameElement.textContent = nickname;
+                document.getElementById('nicknameList).appendChild(nicknameElement)
 
                 const request = new XMLHttpRequest();
                 request.open('GET', `https://api.mojang.com/users/profiles/minecraft/${nickname}`, false);
