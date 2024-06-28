@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Nickname Generator with Check 3.1</title>
+    <title>Random Nickname Generator with Check</title>
 </head>
 <body>
-    <h1>Random Nickname Generator with Check 3.1</h1>
+    <h1>Random Nickname Generator with Check</h1>
     <label>
         <input type="checkbox" id="useNumbers"> Include Numbers (0-9)
     </label>
@@ -19,7 +19,7 @@
     <div id="nicknameList"></div>
 
     <script>
-        function generateAndCheck() {
+        async function generateAndCheck() {
             const alphabet = "abcdefghijklmnopqrstuvwxyz";
             const numbers = "0123456789";
             const underscore = "_";
@@ -46,14 +46,20 @@
                 const nicknameElement = document.createElement("p");
                 nicknameElement.textContent = nickname;
 
-                const request = new XMLHttpRequest();
-                request.open('GET', `https://api.mojang.com/users/profiles/minecraft/${nickname}`, false);
-                request.send();
-
-                if (JSON.parse(request.response).id) {
-                    nicknameElement.textContent += " ✔️"
-                } else {
-                    nicknameElement.textContent += " ❌"
+                try {
+                    const response = await fetch(`https://api.mojang.com/users/profiles/minecraft/${nickname}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.id) {
+                            nicknameElement.textContent += " ✔️";
+                        } else {
+                            nicknameElement.textContent += " ❌";
+                        }
+                    } else {
+                        nicknameElement.textContent += " ❌";
+                    }
+                } catch (error) {
+                    nicknameElement.textContent += " ❌";
                 }
 
                 document.getElementById("nicknameList").appendChild(nicknameElement);
